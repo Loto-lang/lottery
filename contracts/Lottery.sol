@@ -139,4 +139,57 @@ contract Lottery is Ownable {
         paymentToken.burnFrom(msg.sender, amount);
         payable(msg.sender).transfer(amount / purchaseRatio);
     }
+
+        /// @notice Returns the address of the payment token
+    function getPaymentTokenAddress() external view returns (address) {
+        return address(paymentToken);
+    }
+
+    /// @notice Returns the current prize pool balance
+    function getPrizePool() external view returns (uint256) {
+        return prizePool;
+    }
+
+    /// @notice Returns the current owner pool balance
+    function getOwnerPool() external view returns (uint256) {
+        return ownerPool;
+    }
+
+    /// @notice Returns whether bets are open
+    function getBetsOpen() external view returns (bool) {
+        return betsOpen;
+    }
+
+    /// @notice Returns the closing time for the current lottery
+    function getBetsClosingTime() external view returns (uint256) {
+        return betsClosingTime;
+    }
+
+    /// @notice Returns the number of players in the current lottery
+    function getNumberOfSlots() external view returns (uint256) {
+        return _slots.length;
+    }
+
+    /// @notice Returns the address at a given slot index
+    function getSlot(uint256 index) external view returns (address) {
+        require(index < _slots.length, "Index out of bounds");
+        return _slots[index];
+    }
+
+    /// @notice Returns the prize amount available for a specific address
+    function getPrizeOf(address player) external view returns (uint256) {
+        return prize[player];
+    }
+
+    /// @notice Returns the name of the payment token
+    function getTokenName() external view returns (string memory) {
+        return paymentToken.name();
+    }
+
+    /// @notice Returns the symbol of the payment token
+    function getTokenSymbol() external view returns (string memory) {
+        return paymentToken.symbol();
+    }
+
+
 }
