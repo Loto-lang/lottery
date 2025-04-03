@@ -1,1 +1,2 @@
-# lottery
+<<<<<<< HEAD
+# lottery.md
